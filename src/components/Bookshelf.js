@@ -7,6 +7,7 @@ import { Button } from './Buttons';
 import Icon from './Icon';
 import Page from './Page';
 import Book from './Book';
+import Sorter from './Sorter';
 
 const Shelf = styled.div`
   display: flex;
@@ -23,15 +24,6 @@ export default function Bookshelf({ books, actions, saved }) {
   const [, view] = location.search.match(/view=(grid|list)/) || [];
   const [sortBy, setSortBy] = useState('title');
 
-  const Sorter = (
-    <label key="sorter">
-      Sort by&nbsp;
-      <select onChange={e => setSortBy(e.target.value)} value={sortBy}>
-        <option>title</option>
-        <option>author</option>
-      </select>
-    </label>
-  );
   return (
     <Page
       pageTitle="Your Saved Books"
@@ -39,7 +31,7 @@ export default function Bookshelf({ books, actions, saved }) {
         <Button onClick={() => navigate('/books/new')} key="add-new">
           <Icon icon="plus" /> Add new book
         </Button>,
-        Sorter,
+        <Sorter onChange={setSortBy} />,
       ]}
     >
       <Shelf>
@@ -51,7 +43,6 @@ export default function Bookshelf({ books, actions, saved }) {
             <Book
               view={view}
               book={book}
-              actions={actions}
               key={book.primary_isbn13 || book.id}
               onSave={() => {
                 actions.addBook(book);

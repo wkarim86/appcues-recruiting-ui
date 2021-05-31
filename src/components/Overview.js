@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation, useParams } from '@reach/router';
 import styled from 'styled-components/macro';
-import Page from './components/Page';
-import Book from './components/Book';
+import Page from './Page';
+import Book from './Book';
+import Sorter from './Sorter';
 
 const Shelf = styled.div`
   display: flex;
@@ -44,15 +45,6 @@ export default function Overview({ books, actions, saved }) {
     setSelected(value);
     navigate(`/${value}`, { replace: true });
   };
-  const Sorter = (
-    <label key="sorter">
-      Sort by&nbsp;
-      <select onChange={e => setSortBy(e.target.value)} value={sortBy}>
-        <option>title</option>
-        <option>author</option>
-      </select>
-    </label>
-  );
 
   return (
     <Page
@@ -65,7 +57,7 @@ export default function Overview({ books, actions, saved }) {
             </option>
           ))}
         </select>,
-        Sorter,
+        <Sorter onChange={setSortBy} />,
       ]}
     >
       {state === 'done' && (
@@ -84,7 +76,6 @@ export default function Overview({ books, actions, saved }) {
                   description: book.description,
                   author: book.author,
                 }}
-                actions={actions}
                 key={book.primary_isbn13}
                 onSave={() => {
                   actions.saveBookFromList(book);
