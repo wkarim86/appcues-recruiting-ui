@@ -71,7 +71,7 @@ export default function Page({ className, pageTitle, filters, children }) {
       <Content>
         {filters && (
           <Filters>
-            {filters}{' '}
+            {filters}
             {view === 'list' ? (
               <FlexGroup>
                 <ActiveLink>
@@ -79,7 +79,7 @@ export default function Page({ className, pageTitle, filters, children }) {
                 </ActiveLink>
                 <ViewLink to="?view=grid">
                   <Icon icon="th" />
-                </ViewLink>{' '}
+                </ViewLink>
               </FlexGroup>
             ) : (
               <FlexGroup>

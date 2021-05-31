@@ -6,10 +6,12 @@ export const getBooks = list => dispatch =>
   )
     .then(resp => resp.json())
     .then(({ results }) => {
-      dispatch({
-        type: 'books_loaded',
-        books: results.books,
-      });
+      if (results) {
+        dispatch({
+          type: 'books_loaded',
+          books: results.books,
+        });
+      }
     });
 
 export const saveBookFromList = book => dispatch => {

@@ -10,7 +10,7 @@ import Bookshelf from './components/Bookshelf';
 import BookDetails from './components/BookDetails';
 import AddBook from './components/AddBook';
 import Banner from './components/Banner';
-import Overview from './Overview';
+import Overview from './components/Overview';
 import './App.css';
 
 export function App(props) {
